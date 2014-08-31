@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en" ng-app='myApp'>
+<head>
+    <meta charset="UTF-8">
+    <title>Instagram Searcher</title>
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/foundation/5.3.3/css/foundation.css">
+</head>
+<body>
+    <div ng-controller="InstaSearchCtrl">
+
+        <div class="row">
+            <h1>INSTAGRAM SEARCHER</h1>
+        </div>
+
+        <form name="searchForm" ng-submit="submitForm()" novalidate>
+        	<div class="row">	            
+	            <span class="large-7 columns"><input type="text" ng-model="search.term" name="searchterm" required></span>
+	            <span class="large-5 columns"><input type="submit" value="Submit" class="small button"> </span>
+	        </div>
+        </form>
+
+        <div ng-show="searching">Searching Instagram for photos tagged with {{search.term}}</div>
+
+    </div>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/foundation/5.3.3/js/vendor/jquery.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
+    <script src="http://cdn.foundation5.zurb.com/foundation.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/foundation/5.3.3/js/foundation/foundation.equalizer.min.js"></script>    
+    <script src="./js/myApp.js"></script>     
+    <script src="./js/services/InstaSearchService.js"></script>
+    <script src="./js/controllers/InstaSearchController.js"></script>
+</body>
+</html>
