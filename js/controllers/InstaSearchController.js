@@ -16,7 +16,6 @@ angular.module('myApp')
 
                 instaSearchService.search($scope.search.tag)
                     .then(function(response){
-                        console.log(response);
                         $scope.searching = false;
                         $scope.response.searchterm = response.searchterm;
                         $scope.response.data = response.data;
