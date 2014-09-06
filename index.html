@@ -9,23 +9,55 @@
     <div ng-controller="InstaSearchCtrl">
 
         <div class="row">
-            <h1>INSTAGRAM SEARCHER</h1>
+        	<div class="large-6 large-offset-4 columns">
+        		<!-- <h1>INSTAGRAM SEARCHER</h1> -->	
+        		<img src="./img/ng-instagram.png">
+        	</div>            
+        </div>
+
+        <div class="row">	            
+        	<hr>
         </div>
 
         <form name="searchForm" ng-submit="submitForm()" novalidate>
         	<div class="row">	            
-	            <span class="large-7 columns"><input type="text" ng-model="search.term" name="searchterm" required></span>
-	            <span class="large-5 columns"><input type="submit" value="Submit" class="small button"> </span>
+	        	<div class="large-4 large-offset-3 columns">
+	        		<input type="text" ng-model="search.term" name="searchterm" required ng-change="errorMsg = null">
+        		</div>
+        		<div class="large-2 columns end">
+        			<input type="submit" value="Submit" class="small button">
+    			</div>	           	
 	        </div>
         </form>
 
-        <div ng-show="searching">Searching Instagram for photos tagged with {{search.term}}</div>
+        <div ng-show="searching" class="large-4 large-offset-4 columns end alert-box secondary">
+        	Searching Instagram for photos tagged with {{search.tag}}
+        </div>
+
+        <div ng-show="errorMsg" class="large-4 large-offset-4 columns end alert-box alert">
+        	{{errorMsg}}
+        </div>
+
+        <div ng-show="response.data.length > 0">
+
+	        <div class="large-4 large-offset-4 columns end alert-box success">
+	        	We found {{response.data.length}} results for "{{response.searchterm}}"	
+	        </div>
+
+	        <div class="row">
+	        	<ul class="clearing-thumbs small-block-grid-3" data-clearing>
+		          	<li ng-repeat="data in response.data">
+		          		<a href="{{data.link}}" target="_blank"><img ng-src="{{data.images.thumbnail.url}}" /></a>
+		          	</li>			  
+				</ul>	
+	        </div>
+        </div>
 
     </div>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/foundation/5.3.3/js/vendor/jquery.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
     <script src="http://cdn.foundation5.zurb.com/foundation.js"></script>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/foundation/5.3.3/js/foundation/foundation.equalizer.min.js"></script>    
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/foundation/5.3.3/js/foundation/foundation.clearing.js"></script>
     <script src="./js/myApp.js"></script>     
     <script src="./js/services/InstaSearchService.js"></script>
     <script src="./js/controllers/InstaSearchController.js"></script>
